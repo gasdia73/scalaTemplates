@@ -1,0 +1,5 @@
+//copy this to appConfig.json and replace info with your own.
+{
+    "key": "your-github-client-id",
+    "secret": "generated-oauth-secret"
+}
