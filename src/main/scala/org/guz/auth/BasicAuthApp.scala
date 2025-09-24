@@ -1,4 +1,4 @@
-package org.guz
+package org.guz.auth
 
 import cats.effect.*
 import org.http4s.*
@@ -18,6 +18,7 @@ import dev.profunktor.auth.*
 import dev.profunktor.auth.jwt.*
 import io.circe.*
 import io.circe.parser.*
+import org.guz.auth.User
 
 object BasicAuthApp extends IOApp.Simple {
 

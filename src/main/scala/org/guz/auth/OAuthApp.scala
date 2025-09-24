@@ -1,4 +1,4 @@
-package org.guz
+package org.guz.auth
 
 import cats.effect.*
 import org.http4s.*

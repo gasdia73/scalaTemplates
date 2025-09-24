@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package org.guz.protos;
+
+message Item {
+    string name = 1;
+    int32 qty = 2;
+    double amount = 3;
+}
+
+message OrderRequest {
+    int32 orderId = 1;
+    repeated Item items = 2;
+}
+
+message OrderReply {
+    int32 orderId = 1;
+    repeated Item items = 2;
+    double total = 3;
+}
+
+service Order {
+    rpc SendOrderStream (stream OrderRequest) returns (stream OrderReply) {}
+}

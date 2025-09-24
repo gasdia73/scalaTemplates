@@ -10,6 +10,8 @@ val catsEffectVersion = "3.5.2"
 
 val CirisVersion = "3.2.0"
 
+val weaverVersion = "0.8.3"
+
 val catsEffect = "org.typelevel" %% "cats-effect" % catsEffectVersion
 
 val http4sDsl = "org.http4s" %% "http4s-dsl" % Http4sVersion
@@ -28,6 +30,17 @@ val ciris = "is.cir" %% "ciris" % CirisVersion
 
 val cirisCirce = "is.cir" %% "ciris-circe" % CirisVersion
 
+val weaver = "com.disneystreaming" %% "weaver-cats" % weaverVersion % Test
+
+lazy val protobuf =
+  project
+    .in(file("protobuf"))
+    .settings(
+      name := "protobuf",
+      scalaVersion := scala3Version
+    )
+    .enablePlugins(Fs2Grpc)
+
 lazy val root = (project in file("."))
   .settings(
     name := "authentication",
@@ -42,6 +55,10 @@ lazy val root = (project in file("."))
       jwtCirce,
       catsEffect,
       ciris,
-      cirisCirce
-    )
+      cirisCirce,
+      weaver,
+      "io.grpc" % "grpc-netty-shaded" % scalapb.compiler.Version.grpcJavaVersion
+    ),
+    testFrameworks += new TestFramework("weaver.framework.CatsEffect")
   )
+  .dependsOn(protobuf)
