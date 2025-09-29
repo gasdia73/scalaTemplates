@@ -57,7 +57,10 @@ lazy val root = (project in file("."))
       ciris,
       cirisCirce,
       weaver,
-      "io.grpc" % "grpc-netty-shaded" % scalapb.compiler.Version.grpcJavaVersion
+      "io.grpc" % "grpc-netty-shaded" % scalapb.compiler.Version.grpcJavaVersion,
+      "com.datastax.cassandra" % "cassandra-driver-core" % "3.11.5",
+      "com.datastax.cassandra" % "cassandra-driver-mapping" % "3.11.5",
+      "com.typesafe" % "config" % "1.4.3"
     ),
     testFrameworks += new TestFramework("weaver.framework.CatsEffect")
   )
